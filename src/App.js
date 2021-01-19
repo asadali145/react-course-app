@@ -32,7 +32,7 @@ class App extends Component {
     let chars = (
         <div>
           {this.state.inputText.split('').map(
-              (alphabet, index) => <CharComponent text={alphabet} click={() => this.deleteCharHandler(index)}/>
+              (alphabet, index) => <CharComponent key={index} text={alphabet} click={() => this.deleteCharHandler(index)}/>
           )}
         </div>
     )
