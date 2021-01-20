@@ -8,17 +8,17 @@ class App extends Component {
     persons: [
       {
         id: 1,
-        name: 'umar',
+        name: 'Umar',
         age: 24
       },
       {
         id: 2,
-        name: 'asad',
+        name: 'Asad',
         age: 23
       },
       {
         id: 3,
-        name: 'saad',
+        name: 'Saad',
         age: 23
       }
     ],
@@ -81,8 +81,9 @@ class App extends Component {
     }
     return (
       <div className="App">
+        <h1 className='navbar navbar-expand-lg navbar-dark bg-dark text-white text-center'> I am a React App</h1>
         {persons}
-        <button onClick={this.onClickHandler}>Toggle Persons</button>
+        <button type="button" className="btn btn-primary" onClick={this.onClickHandler}>Toggle Persons</button>
       </div>
     );
   }
