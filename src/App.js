@@ -2,27 +2,29 @@ import React, { Component } from 'react';
 import './App.css';
 
 import Person from './Person/Person'
+import Navbar from './Components/Navbar/Navbar'
 
 class App extends Component {
+  StartData = [
+    {
+      id: 1,
+      name: 'Umar',
+      age: 24
+    },
+    {
+      id: 2,
+      name: 'Asad',
+      age: 23
+    },
+    {
+      id: 3,
+      name: 'Saad',
+      age: 23
+    }
+  ]
   state = {
-    persons: [
-      {
-        id: 1,
-        name: 'Umar',
-        age: 24
-      },
-      {
-        id: 2,
-        name: 'Asad',
-        age: 23
-      },
-      {
-        id: 3,
-        name: 'Saad',
-        age: 23
-      }
-    ],
-    showPersons: false
+    persons: [...this.StartData],
+    showPersons: true
   }
 
   onClickHandler = () => {
@@ -61,6 +63,19 @@ class App extends Component {
 
   }
 
+  searchHandler = e => {
+    const persons = [...this.state.persons].filter(person => person.name.startsWith(e.target.value));
+    if (e.target.value === '') {
+      this.setState({
+        persons: [...this.StartData]
+      })
+    } else {
+      this.setState({
+        persons: persons
+      })
+    }
+  }
+
   render() {
     let persons = null;
 
@@ -81,9 +96,13 @@ class App extends Component {
     }
     return (
       <div className="App">
-        <h1 className='navbar navbar-expand-lg navbar-dark bg-dark text-white text-center'> I am a React App</h1>
-        {persons}
-        <button type="button" className="btn btn-primary" onClick={this.onClickHandler}>Toggle Persons</button>
+        <Navbar changed={this.searchHandler}/>
+        <div className='main-div'>
+          <div className='persons'>
+            {persons}
+            <button type="button" className="btn btn-success" onClick={this.onClickHandler}>Toggle Persons</button>
+          </div>
+        </div>
       </div>
     );
   }
